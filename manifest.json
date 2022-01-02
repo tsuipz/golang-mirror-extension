@@ -1,0 +1,10 @@
+{
+	"name": "Golang Mirror Copyer",
+	"description": "Download every image on a web page",
+	"author": "Patrick Tsui",
+	"version": "0.1",
+	"manifest_version": 3,
+	"action": {
+		"default_popup": "popup/index.html"
+	}
+}
