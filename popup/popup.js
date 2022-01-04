@@ -1,7 +1,8 @@
 var btnTry = document.getElementById('try-btn');
+var btnEmpty = document.getElementById('empty-btn');
 var btnCopy = document.getElementById('copy-btn');
 
-function Try() {
+function Try(makeEmpty = false) {
 	var text = document.getElementById('textarea-copy');
 	var golangArray = text.value.split('\n');
 	var finalArray = [];
@@ -13,7 +14,11 @@ function Try() {
 			var sentence = finalSentence.split(' "');
 			var newSentence = sentence[0] + ' "" }}';
 			var array = newSentence.trim().split(' ');
-			array[3] = '$.' + array[1].slice(1);
+			if (makeEmpty === true) {
+				array[3] = '""';
+			} else {
+				array[3] = '$.' + array[1].slice(1);
+			}
 			finalSentence = array.join(' ');
 		}
 		finalArray.push(finalSentence);
@@ -37,4 +42,5 @@ function Copy() {
 }
 
 btnTry.addEventListener('click', Try);
+btnEmpty.addEventListener('click', Try.bind(null, true));
 btnCopy.addEventListener('click', Copy);
