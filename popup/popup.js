@@ -4,18 +4,19 @@ const btnCopy = document.getElementById('copy-btn');
 
 const tryHandler = (makeEmpty = false) => {
 	const text = document.getElementById('textarea-copy');
-	const finalArray = text.value.split('\n').map((element) => {
-		let finalSentence = element;
-		if (finalSentence.includes(':= "')) {
-			const sentence = finalSentence.split(' "');
-			const array = `${sentence[0]} "" }}`.trim().split(' ');
-			makeEmpty === true ? true : (array[array.indexOf('""')] = `$.${array[1].slice(1)}`);
-			finalSentence = array.join(' ');
-		}
-		return finalSentence;
-	});
-
-	text.value = finalArray.join('\n');
+	text.value = text.value
+		.split('\n')
+		.map((element) => {
+			let finalSentence = element;
+			if (finalSentence.includes(':= "')) {
+				const sentence = finalSentence.split(' "');
+				const array = `${sentence[0]} "" }}`.trim().split(' ');
+				makeEmpty === true ? true : (array[array.indexOf('""')] = `$.${array[1].slice(1)}`);
+				finalSentence = array.join(' ');
+			}
+			return finalSentence;
+		})
+		.join('\n');
 };
 
 const copyHandler = () => {
