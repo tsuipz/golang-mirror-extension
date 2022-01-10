@@ -1,46 +1,31 @@
-var btnTry = document.getElementById('try-btn');
-var btnEmpty = document.getElementById('empty-btn');
-var btnCopy = document.getElementById('copy-btn');
+const btnTry = document.getElementById('try-btn');
+const btnEmpty = document.getElementById('empty-btn');
+const btnCopy = document.getElementById('copy-btn');
 
-function Try(makeEmpty = false) {
-	var text = document.getElementById('textarea-copy');
-	var golangArray = text.value.split('\n');
-	var finalArray = [];
-	var result = '';
-
-	golangArray.forEach(function (golang) {
-		var finalSentence = golang;
+const tryHandler = (makeEmpty = false) => {
+	const text = document.getElementById('textarea-copy');
+	const finalArray = text.value.split('\n').map((element) => {
+		let finalSentence = element;
 		if (finalSentence.includes(':= "')) {
-			var sentence = finalSentence.split(' "');
-			var newSentence = sentence[0] + ' "" }}';
-			var array = newSentence.trim().split(' ');
-			if (makeEmpty === true) {
-				array[3] = '""';
-			} else {
-				array[3] = '$.' + array[1].slice(1);
-			}
+			const sentence = finalSentence.split(' "');
+			const array = `${sentence[0]} "" }}`.trim().split(' ');
+			makeEmpty === true ? true : (array[array.indexOf('""')] = `$.${array[1].slice(1)}`);
 			finalSentence = array.join(' ');
 		}
-		finalArray.push(finalSentence);
+		return finalSentence;
 	});
 
-	result = finalArray.join('\n');
-	text.value = result;
-}
+	text.value = finalArray.join('\n');
+};
 
-function Copy() {
-	var copyText = document.getElementById('textarea-copy');
-	copyText.select();
+const copyHandler = () => {
+	const copyText = document.getElementById('textarea-copy');
 	navigator.clipboard.writeText(copyText.value).then(
-		function () {
-			alert('Copied the text');
-		},
-		function (err) {
-			console.error('Async: Could not copy text: ', err);
-		}
+		() => alert('Copied the text'),
+		(err) => alert('Could not copy', err)
 	);
-}
+};
 
-btnTry.addEventListener('click', Try);
-btnEmpty.addEventListener('click', Try.bind(null, true));
-btnCopy.addEventListener('click', Copy);
+btnTry.addEventListener('click', tryHandler);
+btnEmpty.addEventListener('click', tryHandler.bind(null, true));
+btnCopy.addEventListener('click', copyHandler);
