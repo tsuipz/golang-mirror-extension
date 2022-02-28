@@ -10,9 +10,7 @@ const tryHandler = (makeEmpty = false) => {
 			let finalSentence = element;
 			if (makeEmpty === true) {
 				const sentence = finalSentence.split(" ").filter((word) => word !== "");
-				sentence[3] = '""';
-				finalSentence = sentence.join(" ");
-				return finalSentence;
+				return [sentence[0], sentence[1], sentence[2], '"" }}'].join(" ");
 			}
 			if (finalSentence.includes(':= "')) {
 				const sentence = finalSentence.split(' "');
