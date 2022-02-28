@@ -1,6 +1,6 @@
 {
-	"name": "Golang Mirror Copyer",
-	"description": "Download every image on a web page",
+	"name": "Golang Mirror Extension",
+	"description": "Transform your Golang HTML",
 	"author": "Patrick Tsui",
 	"version": "0.1",
 	"manifest_version": 3,
