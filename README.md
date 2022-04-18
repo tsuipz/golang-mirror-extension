@@ -1,12 +1,12 @@
 # Golang HTML Mirror Extension
 
-This extensions focuses on mirroring Golang HTML Variables right away.
+This extensions focuses on mirroring Golang HTML Variables right away. When you paste in the Golang HTML variables, it will convert/empty the variables and produce text to copy.
 
 ## Features
 
 - Converts Golang HTML values into Mirror Variables
 - Empty Golang HTML Variables
-- Copy tex from inside textarea box.
+- Copy text from inside textarea box.
 
 ## Uploading Extensions
 
